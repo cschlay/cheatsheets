@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Mono&display=swap');
+
+@page {
+    size: A4;
+    margin: 0;
+}
+
+
+html, body {
+    font-family: Helvetica, sans-serif;
+    font-size: 10pt;
+    width: 210mm;
+}
+
+code {
+    font-family: 'PT Mono', monospace;
+    line-height: 1.5;
+}
+
+em /* PlaceHolder */ {
+    background-color: beige;
+    opacity: 0.7;
+    padding: 0.1rem 0.4rem;
+    border-radius: 0.2rem;
+}
+
+b /* KeyWord */ {
+    font-weight: bold;
+    color: darkslateblue
+}
+
+table {
+    width: 95%;
+    border-collapse: collapse;
+}
+
+table > tbody > tr {
+    border: 1px solid lightgray;
+}
+
+table > tbody > tr > td {
+    min-width: 10rem;
+    padding: 0.5rem;
+}
+
+i /* comment */ {
+    color: gray;
+}

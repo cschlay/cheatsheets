@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>Page Title</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="./main.css">
+<body>
+    <h2>React</h2>
+    <pre><code><b>interface</b> Props {
+  <em>type definitions</em>
+}
+
+<b>export const</b> <em>ComponentName</em> = ({<em>destruture props</em>}: Props) => {
+  <b>return</b> <em>JSX definitions</em>
+}</code></pre>
+
+  <h3>Hooks</h3>
+  <p>A custom hook can be defined as a function that uses one of the hooks.</p>
+  <table>
+    <tbody>
+      <tr>        
+        <td>Declare state variable</td>
+        <td><code><b>const</b> [<em>name</em>, set<em>Name</em>] = useState&lt;<em>type</em>&gt;(<em>default</em>)</code></td>
+      </tr>
+      <tr>
+        <td>Action on change</td>
+        <td><code>useEffect(() => { <em>...</em> }, [<em>variables</em>])</code></td>
+      </tr>
+      <tr>
+        <td>Define context hook</td>
+        <td><code><b>export const</b> use<em>Name</em>Context = () => useContext(<em>Name</em>Context)</code></td>
+      </tr>
+      <tr>
+        <td>Memoize a value</td>
+        <td><code>useMemo(() => { <em>...</em> <b>return</b> <em>result</em> }, [<em>variables</em>])</code></td>
+      </tr>
+      <tr>
+        <td>Memoize a function</td>
+        <td><code>useCallBack(() => { <em>...</em> }, [<em>variables</em>])</code></td>
+      </tr>
+      <tr>
+        <td>Direct access to DOM</td>
+        <td><code><b>const</b> <em>componentName</em>Ref = useRef(null)</code></td>
+      </tr>
+    </tbody>
+  </table>
+  <p>For complex state updates use <a href="https://beta.reactjs.org/learn/scaling-up-with-reducer-and-context"><code>useReducer</code> with custom contexts</a>.</p>
+
+  <h3>Custom Context</h3>
+  <pre><code><i>// CustomContext.tsx</i>
+<b>interface</b> ContextData {<em>key: value</em>}
+<b>export const</b> <em>Custom</em>Context = createContext&lt;ContextData&gt;(<em>initial data</em>)
+<b>export const</b> use<em>Custom</em>Context = () => useContext(<em>Custom</em>Context)</code></pre>
+
+  <pre><code><i>// CustomContextProvider.tsx </i>
+<b>interface</b> Props { children: ReactNode }
+<b>export const</b> <em>Custom</em>ContextProvider = ({ children }: Props) => {
+  <em>...</em>
+  <b>return</b> &lt;CustomContext.Provider value={{<em>hook return values</em>}} /&gt;
+}
+</code></pre>
+
+  <h3>ARIA Attributes</h3>
+  <p>Use descriptive <em>roles</em> see <a href="https://www.digitala11y.com/wai-aria-1-1-cheat-sheet/">exhaustive list</a>, common ones are:</p>
+  <ul>
+    <li><code>alert</code></li>
+    <li><code>dialog</code></li>
+    <li><code>link</code></li>
+    <li><code>menu, menubar, menuitem</code></li>
+    <li><code>navigation</code></li>
+    <li><code>status</code></li>
+    <li><code>tooltip</code></li>
+  </ul>
+  <p>For interactive elements use <code>tabIndex={0}</code> and <code></code></p>
+
+  <table>
+    <tbody>
+      <tr>
+        <td><code>aria-label=<em>"text"</em></code></td>
+        <td>A text screen reader reads on focus</td>
+      </tr>
+      <tr>
+        <td><code>aria-labelledby=<em>"elementId"</em></code></td>
+        <td>Screen reader reads other component's text content</td>
+      </tr>
+      <tr>
+        <td><code>aria-describedby=<em>"elementId"</em></code></td>
+        <td>A hint for input e.g. tooltips</td>
+      </tr>
+      <tr>
+        <td><code>aria-errormessage=<em>"elementId</em></code></td>
+        <td>A error message for an element</td>
+      </tr>
+      <tr>
+        <td><code>aria-live=<em>"polite" or "assertive"</em></code></td>
+        <td>Read everytime content changes</td>
+      </tr>
+      <tr>
+        <td><code>aria-hidden=<em>{true}</em></code></td>
+        <td>Hide content from screen readers</td>
+      </tr>
+      <tr>
+        <td><code>aria-invalid=<em>{true}</em></code></td>
+        <td>An input is invalid</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>TypeScript</h3>
+  <table>
+    <tbody>
+      <tr>
+        <td>Input value changes</td>
+        <td><code>ChangeEvent&lt;HTML<em>InputElement</em>&gt;</code></td>
+      </tr>
+      <tr>
+        <td>Mouse events</td>
+        <td><code>MouseEvent&lt;HTML<em>ButtonElement</em>&gt;</code></td>
+      </tr>
+      <tr>
+        <td>Keyboard events</td>
+        <td><code>KeyboardEvent&lt;HTML<em>InputElement</em>&gt;</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Lazy-loading</h3>
+  <p>Lazy loading is supported in Next.js.</p>
+  <pre><code><b>const</b> lazyOperation = () => {
+  <i>// Module is fetched only when execution reaches here</i>
+  <b>const</b> <em>ModuleName</em> = <b>await import</b>(<em>"module path"</em>).default
+}
+
+<i>// Lazily loaded components in nextjs</i>
+<b>const</b> <em>Component</em> = dynamic(() => <b>import</b>(<em>"component path"</em>))
+</code></pre>
+
+  <h3>Higher-Order Components</h3>
+  <code><b>const</b> with<em>WrapperName</em> = Component => (props) => {
+  <b>return</b> <em>&lt;Wrapper&gt;</em>&lt;Component /&gt;<em>&lt;Wrapper&gt;</em>
+  }</code>
+
+  <hr />
+    <article>
+      <h2>StoryBook (Component Documentation)</h2>
+<pre><code><b>import</b> { ComponentMeta, ComponentStory } from "@storybook/react"
+<b>import</b> { <em>ComponentName</em> } from <em>"./ComponentName"</em>
+
+<b>export</b> default {
+  title: <em>"Components/ComponentName"</em>>,
+  component: <em>ComponentName</em>
+} <b>as</b> ComponentMeta&lt;<b>typeof</b> <em>ComponentName</em>&gt; 
+
+<b>const</b> Template: ComponentStory&lt;<b>typeof</b> <em>ComponentName</em>&gt; = (props) => {
+    return <em>&lt;ComponentName {...props} /&gt;</em>
+}
+
+<b>export const</b> Base = Template.bind({});
+Base.args = {
+  <em>define props here</em>
+}
+</code></pre>
+
+    <h3>ArgTypes and Controls</h3>
+    <p>Define in meta using <code>argTypes</code> key.</p>
+<pre><code>argTypes: {
+  <em>prop name</em>: {
+    control: <em>control type</em>,
+    disable: <em>true</em>,
+    options: <em>list of possible values</em>,
+    mapping: {
+      <em>option : React Component or JavaScript object</em>
+    }
+  }
+}</code></pre>
+    <h3>Decorators</h3>
+    <p>Wrap all stories into a context in meta.</p>
+<pre><code>decorators: [
+  (Story) => (<em>&lt;UserContext&gt;</em>&lt;Story /&gt;<em>&lt;UserContext /&gt;</em>)
+]</code></pre>
+  </article>
+
+  <hr />
+
+  <article>
+    <h2>Jest (Unit Tests)</h2>
+<pre><code><b>describe</b>(<em>"&lt;ComponentName /&gt;"</em>, () => {
+  <b>beforeAll(() => { <em>...</em> })</b>
+  <b>beforeEach(() => </b>
+    <b>it</b>(<em>"should ..."</em>, () => {
+      render(&lt;Base {...Base.args}/&gt;)
+    })
+  })</code></pre>
+
+    <h3>Mocking</h3>
+    <p>For some modules like <code>next/router</code> a default mock is better.</p>
+
+    <table>
+      <tbody>
+        <tr>
+          <td>Mock a function</td>
+          <td><code><b>const</b> createCandyMock = jest.fn().mockReturnValue(<em>value</em>)<br/>
+          <b>const</b> createCandyMock = jest.fn().mockImplementation(() => <em>value</em>)<br/>
+          <b>const</b> createCandyMock = jest.fn().mockResolvedValue(<em>value</em>)
+
+          </code></td>
+        </tr>
+        <tr>
+          <td>Mock a module</td>
+          <td>
+            <code>
+              <b>import</b> <em>module</em> from <em>"importName"</em><br />
+              jest.mock(<em>"importName"</em>)<br />
+              <em>module</em>.<em>function</em>.<em>function mock</em></code>
+        </tr>
+        <tr>
+          <td>Mock function calls</td>
+          <td><code>createCandyMock.mock.calls</code> each call is list of arguments</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Mocking API calls</h3>
+    <p>Install <code>jest-fetch-mock</code>.</p>
+    <pre><code>fetchMock.mockOnce(JSON.stringify(<em>data</em>), { status: <em>status code</em>})
+<b>const</b> [url, request] = fetchMock.mock.calls[<em>index</em>]
+<b>const</b> method = request?.method
+<b>const</b> body = JSON.parse(request?.body)</code></pre>
+    <h3>Assertions</h3>
+    <p>A negation modifier <code>not</code> can be used.</p>
+
+    <table>
+      <tbody>
+        <tr>
+          <td>Array contains a subset of elements</td>
+          <td><code>expect(<em>array</em>).arrayContaining(subarray)</code></td>
+        </tr>
+        <tr>
+          <td>Object contains subset of properties</td>
+          <td><code>expect(<em>object</em>).objectContaining(subobject)</code</td>
+        </tr>
+        <tr>
+          <td>Assert resolved promises</td>
+          <td><code><b>return</b> expect(<em>promise</em>).resolves.<em>assertion</em></code></td>
+        </tr>
+        <tr>
+          <td>Assert rejected promises</td>
+          <td><code><b>return</b> expect(<em>promise</em>).rejects.<em>assertion</em></code></td>
+        </tr>
+        <tr>
+          <td>Exact value</td>
+          <td><code>expect(<em>any</em>).toEqual(<em>value</em>)</code></td>
+        </tr>
+        <tr>
+          <td>A mock function has been called</td>
+          <td><code>expect(<em>mockFn</em>).toHaveBeenCalled()<br />
+          expect(<em>mockFn</em>).toHaveBeenCalledTimes(<em>number</em>)<br />
+          expect(<em>mockFn</em>).toHaveBeenCalledWith(<em>arg1, arg2, arg3</em>)
+          </code></td>
+        </tr>
+        <tr>
+          <td>Assert array or string length</td>
+          <td><code>expect(<em>array</em>).toHaveLength(<em>number</em>)</code></td>
+        </tr>
+        <tr>
+          <td>Assert types</td>
+          <td>
+            <code>
+              expect(<em>any</em>).toBeDefined()<br />
+              expect(<em>any</em>).toBeFalsy()<br />
+              expect(<em>any</em>).toBeNull()<br />
+              expect(<em>any</em>).toBeTruthy()<br/>
+              expect(<em>any</em>).toBeUndefined()<br/>
+              expect(<em>any</em>).toBeNaN()<br/>
+              expect(<em>any</em>).toBeInstanceof()<br/>
+          </code>
+        </td>
+        </tr>
+        <tr>
+          <td>Array contains an item</td>
+          <td><code>expect(<em>any</em>).toContain(<em>value</em>)</code></td>
+        </tr>
+        <tr>
+          <td>Throws an error</td>
+          <td><code>expect(() => <em>action</em>).toThrow(<em>error message</em>)</code></code></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Execution Modifiers</h3>
+    <p>Avoid debug modifiers <code>skip</code>, and <code>only</code>.</p>
+    <table>
+      <tbody>
+        <tr>
+          <td>Todo, for planned tests</td>
+          <td><code><em>it</em>.todo(<em>"should ..."</em>)</code></td>
+        </tr>
+        <tr>
+          <td>Run for dataset</td>
+          <td><code><em>it</em>.each([<em>data</em>])(<em>"should ..."</em>, (args) => ...)</code></td>
+        </tr>
+        <tr>
+          <td>Run tests concurrently</td>
+          <td><code><em>it</em>.concurrent(<em>"should ..."</em>, () => ...)</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </article>
+  
+  <hr />
+
+  <article>
+  <h2>React Testing Library (Component Tests)</h2>
+  <p>The tests should use storybook components.</p>
+<pre><code><b>import</b> { render, screen } <b>from</b> "@testing-library/react"
+<b>import</b> { Base } <b>from</b> "<em>./ComponentName</em>.stories"
+
+<b>describe</b>(<em>"&lt;ComponentName /&gt;"</em>, () => {
+  <b>it</b>(<em>"should ..."</em>, () => {
+    render(&lt;Base {...Base.args}/&gt;)
+  })
+})</code></pre>
+
+  <h3>Queries</h3>
+  <table>
+    <tbody>
+      <tr>
+        <td>Element exists</td>
+        <td><code>screen.getBy<em>Role(...)</em></code></td>
+      </tr>
+      <tr>
+        <td>Element might not exists</td>
+        <td><code>screen.queryBy<em>Role(...)</em></code></td>
+      </tr>
+      <tr>
+        <td>Element will appear</td>
+        <td><code><b>await</b> screen.findBy<em>Role(...)</em></code></td>
+      </tr>
+      <tr>
+        <td>Element will disappear</td>
+        <td><code><b>await</b> waitForElementToBeRemoved(() => screen.queryBy<em>Role(...)</em>)</code></td>
+      </tr>
+      <tr>
+        <td>Assertion will succeed</td>
+        <td><code><b>await</b> waitFor(() => expect(<em>element</em>)).to<em>...</em></code></td>
+      </tr>    </tbody>
+  </table>
+
+  <h3>Common elements</h3>
+
+  <table>
+    <tbody>
+      <tr>
+        <td>Text Input, Textarea</td>
+        <td>
+          <code>
+            <b>const</b> input = screen.getByRole("textbox", { name: <em>"label"</em> })
+            <br />
+            userEvents.clear(input)
+            <br />
+            userEvents.type(input, <em>"value"</em>)
+            <br />
+            expect(input).toHaveValue(<em>"value"</em>);
+          </code>
+        </td>
+      </tr>
+      <tr>
+        <td>File Input</td>
+        <td>
+          <code>
+            <b>const</b> file = <b>new</b> File(["content"], <em>"name.png"</em>, { type: <em>"image/png"</em> })<br/>
+            <b>const</b> input = screen.getByRole("button", { name: <em>"label"</em> })<br />
+            userEvent.upload(input, file)
+          </code>
+        </td>
+      </tr>
+      <tr>
+        <td>Radio Input</td>
+        <td>
+          <code>
+            <b>const</b> radio = screen.getByRole("radio", { name: <em>"label"</em> })
+            <br />
+            userEvent.click(radio)
+            <br />
+            expect(radio).toBeChecked()
+          </code>
+        </td>
+      </tr>
+      <tr>
+        <td>Select Input</td>
+        <td>
+          <code>
+            <b>const</b> select = screen.getByRole("listbox", { name: <em>"label"</em> })
+            <br/>
+            userEvent.selectOptions(select, [<em>option 1</em>, <em>option 2</em>])
+            <br/>
+            userEvent.deselectOptions(select, [<em>option 1</em>])
+            <br/>
+            expect(select).toHaveValue(<em>option 1</em>);
+          </code>
+        </td>
+      </tr>
+      <tr>
+        <td>Checkbox</td>
+        <td>
+          <code>
+            <b>const</b> checkbox = screen.getByRole("checkbox", { name: <em>"label"</em> })<br />
+            userEvent.click(checkbox)
+            <br />
+            expect(radio).toBeChecked()
+          </code>
+        </td>
+      </tr>
+      <tr>
+        <td>Button</td>
+        <td>
+          <code>
+            <b>const</b> button = screen.getByRole("button", { name: <em>"label"</em> })
+            <br />
+            userEvent.click(button)
+          </code>
+        </td>
+      </tr>
+      <tr>
+        <td>Link</td>
+        <td>
+          <code>
+            screen.getByRole("link", { name: "<em>label</em>" })
+          </code>
+        </td>
+      </tr>
+      <tr>
+        <td>Everything else</td>
+        <td>
+          <code>
+            screen.getByTestId(<em>"data-testid"</em>)
+          </code>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Assertions</h3>
+  <p>A negation modifier <code>not</code> can be used.</p>
+
+  <table>
+    <tbody>
+      <tr>
+        <td>Element is in document</td>
+        <td><code>expect(<em>element</em>).toBeInTheDocument()</code></td>
+      </tr>
+      <tr>
+        <td>Element has attribute</td>
+        <td><code>expect(<em>element</em>).toHaveAttribute(<em>"name"</em>, <em>"value"</em>)</code></td>
+      </tr>
+      <tr>
+        <td>Contains another element</td>
+        <td><code>expect(<em>element</em>).toContainElement(<em>element</em>)</code></td>
+      </tr>
+      <tr>
+        <td>Element has text content</td>
+        <td><code>expect(<em>element</em>).toHaveTextContent(<em>"text"</em>)</code></td>
+      </tr>
+      <tr>
+        <td>Element has a style</td>
+        <td><code>expect(<em>element</em>).toHaveStyle({ <em>key: value</em> })</code></td>
+      </tr>
+      <tr>
+        <td>Element has <code>aria-label</code></td>
+        <td><code>expect(<em>element</em>).toHaveAccessibleDescription(<em>"aria-label"</em>)</code></td>
+      </tr>
+      <tr>
+        <td>The validity of <code>aria-invalid</code></td>
+        <td><code>expect(<em>element</em>).toBeValid()</code> or <code>toBeInvalid()</code></td>
+      </tr>
+      <tr>
+        <td>Has error message <code>aria-errormessage</code></td>
+        <td><code>expect(<em>element</em>).toHaveErrorMessage(<em>"message text"</em>)</code></td>
+      </tr>
+    </tbody>
+  </table>
+  </article>
+
+  <article>
+    <h2>Cypress (End-to-End Tests)</h2>
+
+    <table>
+      <tbody>
+        <tr>
+          <td>Viewport</td>
+          <td><code>cy.viewport(<em>width</em>, <em>height</em>)</code> and <code>cy.viewport(<em>preset</em>, <em>landscape?</em>)</code></td>
+        </tr>
+        <tr>
+          <td>Visit a page</td>
+          <td><code>cy.visit(<em>"relative url"</em>)</code></td>
+        </tr>
+        <tr>
+          <td>Reload a page</td>
+          <td><code>cy.reload()</code></td>
+        </tr>
+        <tr>
+          <td>Previous and next page</td>
+          <td><code>cy.go("back")</code> and <code>cy.go("forward")</code></td>
+        </tr>
+        <tr>
+          <td>Current location</td>
+          <td>
+            <code>
+              cy.location("pathname")<br/>
+              cy.location("search")
+            </code>
+          </td>
+        </tr>
+        <tr>
+          <td>Title of the current page</td>
+          <td><code>cy.title()</code></td>
+        </tr>
+        <tr>
+          <td>Take a screenshot</td>
+          <td><code>cy.screenshot()</code></td>
+        </tr>
+        <tr>
+          <td>Storage operations</td>
+          <td>
+            <code>
+              cy.clearCookie(<em>"name"</em>)<br/>
+              cy.getCookie(<em>"name"</em>)<br />
+              cy.setCookie(<em>"name"</em>)
+              cy.clearCookies()<br/>
+              cy.clearLocalStorage()   
+            </code>
+          </td>
+        </tr>
+        <tr>
+          <td>Focus or blur an element</td>
+          <td><code><em>query</em>.focus()</code> and <code><em>query</em>.blur()</code></td>
+        </tr>
+        <tr>
+          <td>Get focused element</td>
+          <td><code>cy.focused()</code></td>
+        </tr>
+        <tr>
+          <td>Mouse events</td>
+          <td>
+            <code>
+              <em>query</em>.click()<br/>
+              <em>query</em>.dblclick()<br />
+              <em>query</em>.invoke("show").click() <i>// hover</i><br />
+              <em>query</em>.trigger(<em>"mouse event name"</em>)
+            </code>
+          </td>
+        </tr>
+        <tr>
+          <td>Read text content of element</td>
+          <td><code><em>query</em>.invoke("text").then(textContent => <em>...</em>)</code></td>
+        </tr>
+        <tr>
+          <td>Hover an element</td>
+          <td><code><em>query</em>.invoke("show").click()</code></td>
+        </tr>
+        <tr>
+          <td>Scroll to element</td>
+          <td><code><em>query</em>.scrollIntoView()</code></td>
+        </tr>
+      </tbody>
+
+    </table>
+
+    <h3>Queries</h3>
+    <p>
+      Some may not be visible, in that case pass option <code>{ force: true }</code>.<br/>
+      All queries accept options <code>{ log: <em>boolean</em>,  timeout: <em>milliseconds</em> }</code>
+    </p>
+    <p>
+      Custom event can be triggered as <code><em>query</em>.trigger(<em>"event name"</em>)</code>.
+    </p>
+
+    <table>
+      <tbody>
+        <tr>
+          <td>Form</td>
+          <td><code> cy.get("form[id=<em>formId</em>]").within(() => { <em>actions</em> })</code></td>
+        </tr>
+        <tr>
+          <td>Text Input</td>
+          <td>
+            <code>
+              cy.get("input[name=<em>name</em>]").clear(<em>"value"</em>)<br/>
+              cy.get("input[name=<em>name</em>]").type(<em>"value"</em>)<br/>
+              cy.get("input[name=<em>name</em>]").should("have.value", <em>"value"</em>)
+            </code>
+          </td>
+        </tr>
+        <tr>
+          <td>Textarea</td>
+          <td>
+            <code>
+              cy.get("textarea[name=<em>name</em>]").clear(<em>"value"</em>)<br/>
+              cy.get("textarea[name=<em>name</em>]").type(<em>"value"</em>)<br/>
+              cy.get("textara[name=<em>name</em>]").should("have.value", <em>"value"</em>)
+            </code>
+          </td>
+        </tr>
+        <tr>
+          <td>File Input</td>
+          <td>
+            <pre><code><b>const</b> filePath = <em>"images/file.png"</em>
+<b>const</b> type = <em>"image/png"</em>
+cy.fixture(filePath).as(<em>variableName</em>)
+cy.get("input[name=<em>name</em>]").then((el) => {
+  <b>const</b> blob = Cypress.Blob.base64StringToBlob(this.<em>variableName</em>, type)
+  <b>const</b> file = <b>new</b> File([blob], filePath, { type })
+
+  <b>const</b> data = <b>new</b> DataTransfer()
+  data.items.add(file)
+
+  el[0].files = data.files
+  el[0].dispatchEvent(<b>new</b> Event("change", { bubbles: true }))
+})</code></pre>
+          </td>
+        </tr>
+        <tr>
+          <td>Radio Input</td>
+          <td>
+            <code>
+              cy.get("input[name=<em>name</em>]").check(<em>"value"</em>)
+            </code>
+          </td>
+        </tr>
+        <tr>
+          <td>Select Input</td>
+          <td>
+            <code>
+              cy.get("select[name=<em>name</em>").select(<em>"option value"</em>)
+            </code>
+          </td>
+        </tr>
+        <tr>
+          <td>Checkbox</td>
+          <td>
+            <code>
+              cy.get("input[name=<em>name</em>]").check()<br/>
+              cy.get("input[name=<em>name</em>]").uncheck()
+            </code>
+          </td>
+        </tr>
+        <tr>
+          <td>Submit button</td>
+          <td>
+            <code>
+              cy.get("button[type=submit]").click()
+            </code>
+          </td>
+        </tr>
+        <tr>
+          <td>Everything else</td>
+          <td>
+            <code>
+              cy.get("[data-testid=<em>testId</em>]") <br/>
+              cy.get("contains", <em>"text content"</em>)
+            </code>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Intercepting HTTP Requests</h3>
+    <pre><code>cy.intercept(<em>"method"</em>, <em>"url"</em>, {
+  statusCode: <em>status code</em>,
+  body: <em>response data</em>,
+  fixture: <em>"fixtures/data.json"</em>
+})</code></pre>
+
+    <h3>Assertions</h3>
+    <p>Use chains e.g. <code><em>query</em>.should(<em>condition 1</em>).and(<em>condition 2</em>)</code>.</p>
+    <table>
+      <tbody>
+        <tr>
+          <td>Equals</td>
+          <td><code><em>query</em>.should("equal")</code></td>
+        </tr>
+        <tr>
+          <td>Length</td>
+          <td><code><em>query</em>.should("have.length", <em>number</em>)</code></td>
+        </tr>
+        <tr>
+          <td>Element exists</td>
+          <td><code><em>query</em>.should("exist")</code></td>
+        </tr>
+        <tr>
+          <td>Has attribute</td>
+          <td>
+            <code>
+              <em>query</em>.should("have.attr", <em>"name"</em>, <em>value</em>)
+            </code>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <h3>Asynchronous operation</h3>
+    <p>All asynchronous operations must be chained <code><em>query</em>.then(<b>async</b> () => <em>...</em>)</code> or in setup.</p>
+    <pre><code>let data;
+beforeEach(<b>async</b> () => {
+  data = <b>await</b> <em>functionCallAsync()</em>
+})</code></pre>
+  </article>
+</body>
+</html>
+
