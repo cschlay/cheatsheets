@@ -6,9 +6,6 @@
 <link rel="stylesheet" href="./main.css">
 <body>
   <article>
-    <h2>Google</h2>
-  </article>
-  <article>
     <h2>ASP.NET Core</h2>
     
     <table>
@@ -27,11 +24,17 @@
         </tr>
         <tr>
           <td>Url template validation</td>
-          <td>https://docs.microsoft.com/en-us/aspnet/core/fundamentals/routing?view=aspnetcore-6.0#route-constraints</td>
+          <td>
+            Template: <code>"<em>path</em>/{<em>name</em>:<em>type</em>}"</code> e.g. <code>"books/{id:guid}"</code><br />
+            Types: <code>length(<em>min</em>, <em>max</em>), range(<em>min</em>, <em>max</em>), guid,  regex(<em>pattern</em>), required, int, bool,</code> etc...<br/>
+            See <a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/routing?view=aspnetcore-6.0#route-constraints" target="_blank">official documentation</a>
+          </td>
         </tr>
         <tr>
           <td>Validation attributes</td>
-          <td>https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations?view=net-6.0</td>
+          <td>
+            <code>[EmailAddress], [EnumData], [Range(<em>min</em>, <em>max</em>)], [Required], [StringLength], [Url], [RegularExpression]</code><br />
+            See <a href="https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations?view=net-6.0" target="_blank">official documentation</a></td>
         </tr>
         <tr>
           <td>JSON serialization</td>
@@ -113,11 +116,33 @@
     </table>
   </article>
   <article>
-    <h2>Entity Framework Core (ORM)</h2>
+    <h2>Entity Framework Core</h2>
     <pre><code><b>public class</b> <em>Model</em> {
   <em>[Attributes]</em> 
   <b>public</b> <em>Type</em> <em>PropertyName</em> { <b>get</b>; <b>set</b>; }</em>      
 }</code></pre>
+
+    <section>
+    <h3>CLI Commands</h3>
+    <table>
+      <tr>
+        <td>Add migrations</td>
+        <td><code>dotnet ef migrations add <em>MigrationName</em> -p <em>ProjectName</em></code></td>
+      </tr>
+      <tr>
+        <td>Remove latest migration</td>
+        <td><code>dotnet ef migrations remove -p <em>ProjectName</em></code></td>
+      </tr>
+      <tr>
+        <td>Apply migrations</td>
+        <td><code>dotnet ef database update -p <em>ProjectName</em></code></td>
+      </tr>
+      <tr>
+        <td>Unapply migration</td>
+        <td><code>dotnet ef database update <em>MigrationName</em> -p <em>ProjectName</em></code></td>
+      </tr>
+    </table>
+    <p>Notice that you need to unapply migrations before you can remove them!</p>
 
     <h3>Model Attributes</h3>
     <table>
@@ -203,7 +228,7 @@
         </tr>
         <tr>
           <td>Unique constraints</td>
-          <td>Not supported, use an unique index</td>
+          <td>Not supported, use unique index</td>
         </tr>
         <tr>
           <td>Default values</td>

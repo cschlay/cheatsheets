@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=PT+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2&family=Red+Hat+Mono&display=swap');
 
 @page {
     size: A4;
@@ -7,26 +7,32 @@
 
 
 html, body {
-    font-family: Helvetica, sans-serif;
+    background-color: rgb(253, 253, 253);
+    font-family: 'Baloo 2', cursive;
     font-size: 10pt;
     width: 210mm;
+
+    margin: 0 auto;
+}
+
+a {
+    color: rgb(0, 162, 255);
 }
 
 code {
-    font-family: 'PT Mono', monospace;
+    font-family: 'Red Hat Mono', monospace;
     line-height: 1.5;
 }
 
 em /* PlaceHolder */ {
-    background-color: beige;
+    background-color: rgb(238, 228, 252);
     opacity: 0.7;
-    padding: 0.1rem 0.4rem;
     border-radius: 0.2rem;
 }
 
 b /* KeyWord */ {
     font-weight: bold;
-    color: darkslateblue
+    color: rgb(107, 162, 214)
 }
 
 table {
@@ -35,7 +41,7 @@ table {
 }
 
 table > tbody > tr {
-    border: 1px solid lightgray;
+    border: 1px solid rgb(230, 225, 225);
 }
 
 table > tbody > tr > td {
@@ -43,6 +49,18 @@ table > tbody > tr > td {
     padding: 0.5rem;
 }
 
+table > tbody > tr:hover {
+    background-color: rgb(246, 244, 255);
+}
+
 i /* comment */ {
     color: gray;
+}
+
+h2 {
+    margin: 4rem 0 2rem 0;
+}
+
+h3 {
+    margin: 2rem 0 1rem 0;
 }
