@@ -19,6 +19,14 @@ a {
     color: rgb(0, 162, 255);
 }
 
+a:hover {
+    opacity: 0.8;
+}
+
+article {
+    margin-bottom: 5rem;
+}
+
 code {
     font-family: 'Red Hat Mono', monospace;
     line-height: 1.5;
@@ -28,6 +36,11 @@ em /* PlaceHolder */ {
     background-color: rgb(238, 228, 252);
     opacity: 0.7;
     border-radius: 0.2rem;
+}
+
+footer {
+    padding: 3rem;
+    text-align: center;
 }
 
 b /* KeyWord */ {
@@ -57,10 +70,36 @@ i /* comment */ {
     color: gray;
 }
 
-h2 {
+h1 {
     margin: 4rem 0 2rem 0;
 }
 
-h3 {
+h2, h3 {
     margin: 2rem 0 1rem 0;
+}
+
+.menu {
+    background-color: rgb(24, 23, 24);
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    
+    z-index: 100;
+}
+
+.menu > a {
+    color: rgb(231, 252, 255);
+    font-size: 1rem;
+    text-decoration: none;
+    padding: 0.5rem 0;
+}
+
+.menu > a:hover {
+    text-decoration: underline;
+    filter: brightness(110%);
 }

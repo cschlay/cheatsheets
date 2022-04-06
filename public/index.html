@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Software Development Cheatsheets</title>
+  <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+  <x-menu class="test"></x-menu>
+  <h1>General Topics</h1>
+
+  <h2>Windows</h2>
+  <p>The scripts run in PowerShell.</p>
+  <table>
+    <tbody>
+      <tr>
+        <td>
+          Stop process at port 
+          <a href="https://stackoverflow.com/a/69047484" target="_blank" rel="noreferrer">[source]</a>
+        </td>
+        <td>
+          <code>
+            netstat -ano | findstr <em>PORT</em><br/>
+            stop-process <em>PID</em><br/>
+          </code>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <x-footer></x-footer>
+  <script src="./js/components.js"></script>
+</body>
+</html>

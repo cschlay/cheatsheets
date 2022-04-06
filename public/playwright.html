@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Software Development Cheatsheets</title>
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
+
+  <body>
+    <x-menu class="test"></x-menu>
+    <h1>Playwright</h1>
+
+    <pre><code>test.describe(<em>"name"</em>, () => {
+  test(<em>"name"</em>, <b>async</b> ({ context, page, baseURL }) => {
+    <em>Setup, Visit, Act, and Assert</em>
+  });
+});</code></pre>
+
+    <table>
+      <tbody>
+        <tr>
+          <td>Visit a page</td>
+          <td>
+            <code><b>await</b> page.goto(<em>"url"</em>)</code>
+          </td>
+        </tr>
+        <tr>
+          <td>Reload page</td>
+          <td>
+            <code><b>await</b> page.reload()</code>
+          </td>
+        </tr>
+        <tr>
+          <td>Take a Screenshot</td>
+          <td>
+            <code>
+              <b>await</b> page.screenshot({ path: <em>filename</em>})<br/>
+              <b>await</b> page.screenshot({ path: <em>filename</em>, fullPage: true})<br/>
+              <b>await</b> element.screenshot({ path: <em>filename</em>})<br/>
+            </code>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Queries</h2>
+    <table>
+      <tbody>
+        <tr>
+          <td>Text Input</td>
+          <td>
+            <code>
+              <b>await</b> page.fill("input[name=<em>name</em>]",
+              <em>"value"</em>)<br />
+              <b>await</b>
+              expect(page.locator("input[name=<em>name</em>]")).toHaveValue(<em>regex</em>)
+            </code>
+          </td>
+        </tr>
+        <tr>
+          <td>Textarea</td>
+          <td>
+            <code>
+              <b>await</b> page.fill("textarea[name=<em>name</em>]",
+              <em>"value"</em>)<br />
+              <b>await</b>
+              expect(page.locator("textarea[name=<em>name</em>]").toHaveValue(<em>regex</em>)
+            </code>
+          </td>
+        </tr>
+        <tr>
+          <td>File Input</td>
+          <td>
+            <code>
+              <b>await</b> page.setInputFiles("input[name=<em>name</em>]",
+              [<em>filepath</em>]);
+            </code>
+          </td>
+        </tr>
+        <tr>
+          <td>Select Input</td>
+          <td>
+            <code>
+              <b>await</b> page.selectOption("select[name=<em>name</em>]", {
+              label: <em>"label"</em>})
+            </code>
+          </td>
+        </tr>
+        <tr>
+          <td>Checkbox and Radio</td>
+          <td>
+            <code>
+              <b>await</b> page.check("input[name=<em>name</em>]")<br />
+              <b>await</b> page.uncheck("input[name=<em>name</em>]")<br />
+              expect(<b>await</b>
+              page.isChecked("input[name=<em>name</em>]")).toBeTruthy()<br />
+            </code>
+          </td>
+        </tr>
+        <tr>
+          <td>Submit button</td>
+          <td>
+            <code>
+              <b>await</b> page.click("button[type=<em>submit</em>]")
+            </code>
+          </td>
+        </tr>
+        <tr>
+          <td>Everything else</td>
+          <td>
+            <code>
+              <b>await</b> page.locator("[data-testid=<em>testId</em>]") <br />
+              <b>await</b> page.locator('text="<em>text</em>"')
+            </code>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Local and Session Storage</h2>
+    <pre><code><b>await</b> context.addInitScript(<em>arg</em> => {
+  window.localStorage.setItem(<em>"key"</em>, <em>"value"</em>);
+  window.sessionStorage.setItem(<em>"key"</em>, <em>"value"</em>);
+}, <em>arg</em>);</code></pre>
+
+    <h2>Intercepting HTTP Requests</h2>
+    <pre><code><b>await</b> page.route(<em>url</em>, (route, request) => {
+  <em>You can also check request data: request.url() or request.postDataJSON()</em>
+  <b>return</b> route.fulfill({
+    status: <em>200</em>,
+    body: <em>data</em>
+  });
+});</code></pre>
+
+    <x-footer></x-footer>
+    <script src="./js/components.js"></script>
+  </body>
+</html>

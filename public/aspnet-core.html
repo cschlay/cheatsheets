@@ -3,11 +3,11 @@
 <meta charset="UTF-8">
 <title>Page Title</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="./main.css">
+<link rel="stylesheet" href="./css/main.css">
 <body>
+  <x-menu></x-menu>
+  <h1>ASP.NET Core</h1>
   <article>
-    <h2>ASP.NET Core</h2>
-    
     <table>
       <tbody>
         <tr>
@@ -619,6 +619,9 @@ modelBuilder.HasMany(l => l.<em>Right</em>).WithMany(r => r.<em>Left</em>)
       </tbody>
     </table>
   </article>
+
+  <x-footer></x-footer>
+  <script src="./js/components.js"></script>
 </body>
 </html>
 
