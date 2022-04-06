@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <meta charset="UTF-8">
-<title>Page Title</title>
+<title>Cheatsheet - ASP.NET Core</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="./css/main.css">
 <body>
@@ -25,16 +25,19 @@
         <tr>
           <td>Url template validation</td>
           <td>
-            Template: <code>"<em>path</em>/{<em>name</em>:<em>type</em>}"</code> e.g. <code>"books/{id:guid}"</code><br />
-            Types: <code>length(<em>min</em>, <em>max</em>), range(<em>min</em>, <em>max</em>), guid,  regex(<em>pattern</em>), required, int, bool,</code> etc...<br/>
+            <strong>Template</strong> <code>"<em>path</em>/{<em>name</em>:<em>type</em>}"</code><br />
+            <strong>Types</strong>
+            <ul>
+              <li>length(<em>min</em>, <em>max</em>)</li>
+              <li>range(<em>min</em>, <em>max</em>)</li>
+              <li>regex(<em>pattern</em>)</li>
+              <li>guid</li>
+              <li>required</li>
+              <li>int</li>
+              <li>bool</li>
+            </ul>
             See <a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/routing?view=aspnetcore-6.0#route-constraints" target="_blank">official documentation</a>
           </td>
-        </tr>
-        <tr>
-          <td>Validation attributes</td>
-          <td>
-            <code>[EmailAddress], [EnumData], [Range(<em>min</em>, <em>max</em>)], [Required], [StringLength], [Url], [RegularExpression]</code><br />
-            See <a href="https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations?view=net-6.0" target="_blank">official documentation</a></td>
         </tr>
         <tr>
           <td>JSON serialization</td>
@@ -47,7 +50,26 @@
       </tbody>
     </table>
 
-    <h3>Docstring elements</h3>
+    <h2>API-Model Validation</h2>
+    <pre><code><b>public</b> <b>class</b> <em>ModelName</em> : IValidatableObject {
+  <b>public</b> IEnumerable&lt;ValidationResult&gt; Validate(ValidationContext validationContext) {
+    <i>// Yield if error is encountered</i>
+    <b>yield</b> <b>return</b> <b>new</b> ValidationResult(<em>"message"</em>, <b>new</b>[] { <b>nameof</b>(<em>FieldName</em>)})
+  }
+}</code></pre>
+
+    <table>
+      <tbody>
+        <tr>
+          <td>Validation attributes</td>
+          <td>
+            <code>[EmailAddress], [EnumData], [Range(<em>min</em>, <em>max</em>)], [Required], [StringLength], [Url], [RegularExpression]</code><br />
+            See <a href="https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations?view=net-6.0" target="_blank">official documentation</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Docstring elements</h2>
     <p>A subset of necessary elements.</p>
     <table>
       <tbody>
@@ -86,7 +108,7 @@
       </tbody>
     </table>
 
-    <h3>Swagger Documentation</h3>
+    <h2>Swagger Documentation</h2>
     <pre><code><i>/// &lt;summary&gt;</i>
 <i>/// Description</i>
 <i>/// &lt;summary /&gt;</i>
@@ -115,6 +137,7 @@
       </tbody>
     </table>
   </article>
+
   <article>
     <h2>Entity Framework Core</h2>
     <pre><code><b>public class</b> <em>Model</em> {
@@ -498,18 +521,20 @@ modelBuilder.HasMany(l => l.<em>Right</em>).WithMany(r => r.<em>Left</em>)
   </article>
   <article>
     <h2>xUnit (Unit and Integration Tests)</h2>
-    <pre><code><b>public class</b> <em>TestClass</em> : TestCase
+    <pre><code>[Collection(<em>name</em>)]
+<b>public class</b> <em>TestClass</em> : <em>BaseTestCase</em>
 {
-  [Fact] <b>public async</b> Task <em>TestName</em>()
-  {
-    <i>// Arrange </i>
-    <i>// Act </i>
-    <i>// Assert</i>
-  }
+  [Fact]
+  <b>public async</b> Task <em>SingleTest</em>() { <i>// Arrange, Act, Assert</i> }
+
+  [Theory]
+  [InlineData(<em>arguments</em>)]
+  [InlineData(<em>arguments</em>)]
+  <b>public async</b> Task <em>ParameterizedTest</em>(<em>arguments</em>) {}
 }</code></pre>
 
     <h3>Mocking with Moq</h3>
-    <p>Create a mock instance <code><b>var</b> mock = <b>new</b> Mock&lt;Interface&gt;()</code></p>
+    <p>Create a mock instance <code><b>var</b> mock = <b>new</b> Mock&lt;<em>Interface</em>&gt;()</code></p>
 
     <table>
       <tbody>

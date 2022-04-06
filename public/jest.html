@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Cheatsheets - Jest</title>
+  <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+  <x-menu class="test"></x-menu>
+  <h1>Jest (Unit Tests)</h1>
+
+<pre><code><b>describe</b>(<em>"&lt;ComponentName /&gt;"</em>, () => {
+  <b>beforeAll(() => { <em>...</em> })</b>
+  <b>beforeEach(() => </b>
+    <b>it</b>(<em>"should ..."</em>, () => {
+      render(&lt;Base {...Base.args}/&gt;)
+    })
+  })</code></pre>
+
+  <h3>Mocking</h3>
+  <p>For some modules like <code>next/router</code> a default mock is better.</p>
+
+  <table>
+    <tbody>
+      <tr>
+        <td>Mock a function</td>
+        <td><code><b>const</b> createCandyMock = jest.fn().mockReturnValue(<em>value</em>)<br/>
+        <b>const</b> createCandyMock = jest.fn().mockImplementation(() => <em>value</em>)<br/>
+        <b>const</b> createCandyMock = jest.fn().mockResolvedValue(<em>value</em>)
+
+        </code></td>
+      </tr>
+      <tr>
+        <td>Mock a module</td>
+        <td>
+          <code>
+            <b>import</b> <em>module</em> from <em>"importName"</em><br />
+            jest.mock(<em>"importName"</em>)<br />
+            <em>module</em>.<em>function</em>.<em>function mock</em></code>
+      </tr>
+      <tr>
+        <td>Mock function calls</td>
+        <td><code>createCandyMock.mock.calls</code> each call is list of arguments</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Mocking API calls</h3>
+  <p>Install <code>jest-fetch-mock</code>.</p>
+  <pre><code>fetchMock.mockOnce(JSON.stringify(<em>data</em>), { status: <em>status code</em>})
+<b>const</b> [url, request] = fetchMock.mock.calls[<em>index</em>]
+<b>const</b> method = request?.method
+<b>const</b> body = JSON.parse(request?.body)</code></pre>
+  <h3>Assertions</h3>
+  <p>A negation modifier <code>not</code> can be used.</p>
+
+  <table>
+    <tbody>
+      <tr>
+        <td>Array contains a subset of elements</td>
+        <td><code>expect(<em>array</em>).arrayContaining(subarray)</code></td>
+      </tr>
+      <tr>
+        <td>Object contains subset of properties</td>
+        <td><code>expect(<em>object</em>).objectContaining(subobject)</code</td>
+      </tr>
+      <tr>
+        <td>Assert resolved promises</td>
+        <td><code><b>return</b> expect(<em>promise</em>).resolves.<em>assertion</em></code></td>
+      </tr>
+      <tr>
+        <td>Assert rejected promises</td>
+        <td><code><b>return</b> expect(<em>promise</em>).rejects.<em>assertion</em></code></td>
+      </tr>
+      <tr>
+        <td>Exact value</td>
+        <td><code>expect(<em>any</em>).toEqual(<em>value</em>)</code></td>
+      </tr>
+      <tr>
+        <td>A mock function has been called</td>
+        <td><code>expect(<em>mockFn</em>).toHaveBeenCalled()<br />
+        expect(<em>mockFn</em>).toHaveBeenCalledTimes(<em>number</em>)<br />
+        expect(<em>mockFn</em>).toHaveBeenCalledWith(<em>arg1, arg2, arg3</em>)
+        </code></td>
+      </tr>
+      <tr>
+        <td>Assert array or string length</td>
+        <td><code>expect(<em>array</em>).toHaveLength(<em>number</em>)</code></td>
+      </tr>
+      <tr>
+        <td>Assert types</td>
+        <td>
+          <code>
+            expect(<em>any</em>).toBeDefined()<br />
+            expect(<em>any</em>).toBeFalsy()<br />
+            expect(<em>any</em>).toBeNull()<br />
+            expect(<em>any</em>).toBeTruthy()<br/>
+            expect(<em>any</em>).toBeUndefined()<br/>
+            expect(<em>any</em>).toBeNaN()<br/>
+            expect(<em>any</em>).toBeInstanceof()<br/>
+        </code>
+      </td>
+      </tr>
+      <tr>
+        <td>Array contains an item</td>
+        <td><code>expect(<em>any</em>).toContain(<em>value</em>)</code></td>
+      </tr>
+      <tr>
+        <td>Throws an error</td>
+        <td><code>expect(() => <em>action</em>).toThrow(<em>error message</em>)</code></code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Execution Modifiers</h3>
+  <p>Avoid debug modifiers <code>skip</code>, and <code>only</code>.</p>
+  <table>
+    <tbody>
+      <tr>
+        <td>Todo, for planned tests</td>
+        <td><code><em>it</em>.todo(<em>"should ..."</em>)</code></td>
+      </tr>
+      <tr>
+        <td>Run for dataset</td>
+        <td><code><em>it</em>.each([<em>data</em>])(<em>"should ..."</em>, (args) => ...)</code></td>
+      </tr>
+      <tr>
+        <td>Run tests concurrently</td>
+        <td><code><em>it</em>.concurrent(<em>"should ..."</em>, () => ...)</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <x-footer></x-footer>
+  <script src="./js/components.js"></script>
+</body>
+</html>

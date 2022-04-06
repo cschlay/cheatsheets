@@ -6,6 +6,7 @@ class Menu extends HTMLElement {
             <a href="index.html">Home</a>
             <a href="aspnet-core.html">ASP.NET Core</a>
             <a href="react.html">React</a>
+            <a href="jest.html">Jest</a>
             <a href="playwright.html">Playwright</a>
             <a href="cypress.html">Cypress</a>
         `;
