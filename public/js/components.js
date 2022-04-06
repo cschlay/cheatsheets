@@ -18,7 +18,7 @@ class Footer extends HTMLElement {
         this.innerHTML = `
             <footer>
                 Licensed under
-                <a href="https://github.com/cschlay/cheatsheets/LICENSE">The Unlicense</a>,
+                <a href="https://github.com/cschlay/cheatsheets/blob/main/LICENSE">The Unlicense</a>,
             </footer>
         `;
     }
