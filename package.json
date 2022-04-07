@@ -1,0 +1,22 @@
+{
+  "name": "cheatsheets",
+  "version": "1.0.0",
+  "description": "Nobody remembers all commands. A curated list reduces the googling of same snippets.",
+  "scripts": {
+    "dev": "parcel public/*.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cschlay/cheatsheets.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cschlay/cheatsheets/issues"
+  },
+  "homepage": "https://github.com/cschlay/cheatsheets#readme",
+  "dependencies": {
+    "parcel": "2.4.1"
+  }
+}
