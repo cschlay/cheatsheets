@@ -5,147 +5,151 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="./css/main.css">
 <body>
-  <x-menu></x-menu>
-  <h1>ASP.NET Core</h1>
-  <article>
-    <table>
-      <tbody>
-        <tr>
-          <td>Define class as controller</td>
-          <td><code>[ApiController]</code></td>
-        </tr>
-        <tr>
-          <td>Define class as controller</td>
-          <td><code>[Route(<em>BaseUrl</em>)]</code></td>
-        </tr>
-        <tr>
-          <td>API Methods</td>
-          <td><code>[HttpGet], [HttpDelete], [HttpPost], [HttpPatch], [HttpPut] </code></td>
-        </tr>
-        <tr>
-          <td>Url template validation</td>
-          <td>
-            <strong>Template</strong> <code>"<em>path</em>/{<em>name</em>:<em>type</em>}"</code><br />
-            <strong>Types</strong>
-            <ul>
-              <li>length(<em>min</em>, <em>max</em>)</li>
-              <li>range(<em>min</em>, <em>max</em>)</li>
-              <li>regex(<em>pattern</em>)</li>
-              <li>guid</li>
-              <li>required</li>
-              <li>int</li>
-              <li>bool</li>
-            </ul>
-            See <a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/routing?view=aspnetcore-6.0#route-constraints" target="_blank">official documentation</a>
-          </td>
-        </tr>
-        <tr>
-          <td>JSON serialization</td>
-          <td>
-            <code>
-              [JsonPropertyName(<em>"PropertyName"</em>)]<br/>
-              [JsonIgnore]
-            </code></td>
-        </tr>
-      </tbody>
-    </table>
+<x-menu></x-menu>
+<h1>ASP.NET Core</h1>
+<article>
+  <table>
+    <tbody>
+    <tr>
+      <td>Define class as controller</td>
+      <td><code>[ApiController]</code></td>
+    </tr>
+    <tr>
+      <td>Define class as controller</td>
+      <td><code>[Route(<em>BaseUrl</em>)]</code></td>
+    </tr>
+    <tr>
+      <td>API Methods</td>
+      <td><code>[HttpGet], [HttpDelete], [HttpPost], [HttpPatch], [HttpPut] </code></td>
+    </tr>
+    <tr>
+      <td>Url template validation</td>
+      <td>
+        <strong>Template</strong> <code>"<em>path</em>/{<em>name</em>:<em>type</em>}"</code><br/>
+        <strong>Types</strong>
+        <ul>
+          <li>length(<em>min</em>, <em>max</em>)</li>
+          <li>range(<em>min</em>, <em>max</em>)</li>
+          <li>regex(<em>pattern</em>)</li>
+          <li>guid</li>
+          <li>required</li>
+          <li>int</li>
+          <li>bool</li>
+        </ul>
+        See <a
+        href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/routing?view=aspnetcore-6.0#route-constraints"
+        target="_blank">official documentation</a>
+      </td>
+    </tr>
+    <tr>
+      <td>JSON serialization</td>
+      <td>
+        <code>
+          [JsonPropertyName(<em>"PropertyName"</em>)]<br/>
+          [JsonIgnore]
+        </code></td>
+    </tr>
+    </tbody>
+  </table>
 
-    <h2>API-Model Validation</h2>
-    <pre><code><b>public</b> <b>class</b> <em>ModelName</em> : IValidatableObject {
+  <h2>API-Model Validation</h2>
+  <pre><code><b>public</b> <b>class</b> <em>ModelName</em> : IValidatableObject {
   <b>public</b> IEnumerable&lt;ValidationResult&gt; Validate(ValidationContext validationContext) {
     <i>// Yield if error is encountered</i>
     <b>yield</b> <b>return</b> <b>new</b> ValidationResult(<em>"message"</em>, <b>new</b>[] { <b>nameof</b>(<em>FieldName</em>)})
   }
 }</code></pre>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>Validation attributes</td>
-          <td>
-            <code>[EmailAddress], [EnumData], [Range(<em>min</em>, <em>max</em>)], [Required], [StringLength], [Url], [RegularExpression]</code><br />
-            See <a href="https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations?view=net-6.0" target="_blank">official documentation</a></td>
-        </tr>
-      </tbody>
-    </table>
+  <table>
+    <tbody>
+    <tr>
+      <td>Validation attributes</td>
+      <td>
+        <code>[EmailAddress], [EnumData], [Range(<em>min</em>, <em>max</em>)], [Required], [StringLength], [Url],
+          [RegularExpression]</code><br/>
+        See <a href="https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations?view=net-6.0"
+               target="_blank">official documentation</a></td>
+    </tr>
+    </tbody>
+  </table>
 
-    <h2>Docstring elements</h2>
-    <p>A subset of necessary elements.</p>
-    <table>
-      <tbody>
-        <tr>
-          <td>Code</td>
-          <td><code>&lt;c /&gt;</code></td>
-        </tr>
-        <tr>
-          <td>Exception</td>
-          <td><code>&lt;exception&gt;<em>snippet</em>&lt;exception /&gt;</code></td>
-        </tr>
-        <tr>
-          <td>Summary</td>
-          <td><code>&lt;summary /&gt;</code></td>
-        </tr>
-        <tr>
-          <td>Link to website</td>
-          <td><code>&lt;see href="<em>link</em>" /&gt;</code></td>
-        </tr>
-        <tr>
-          <td>Parameter description</td>
-          <td><code>&lt;param name="<em>paramName</em>" /&gt;</code></td>
-        </tr>
-        <tr>
-          <td>Generic type description</td>
-          <td><code>&lt;typeparam name="<em>Type</em>" /&gt;</code></td>
-        </tr>
-        <tr>
-          <td>Return value</td>
-          <td><code>&lt;return /&gt;</code></td>
-        </tr>
-        <tr>
-          <td>Inherit docstring</td>
-          <td><code>&lt;inheritdoc cref="<em>class or property</em>" /&gt;</code></td>
-        </tr>
-      </tbody>
-    </table>
+  <h2>Docstring elements</h2>
+  <p>A subset of necessary elements.</p>
+  <table>
+    <tbody>
+    <tr>
+      <td>Code</td>
+      <td><code>&lt;c /&gt;</code></td>
+    </tr>
+    <tr>
+      <td>Exception</td>
+      <td><code>&lt;exception&gt;<em>snippet</em>&lt;exception /&gt;</code></td>
+    </tr>
+    <tr>
+      <td>Summary</td>
+      <td><code>&lt;summary /&gt;</code></td>
+    </tr>
+    <tr>
+      <td>Link to website</td>
+      <td><code>&lt;see href="<em>link</em>" /&gt;</code></td>
+    </tr>
+    <tr>
+      <td>Parameter description</td>
+      <td><code>&lt;param name="<em>paramName</em>" /&gt;</code></td>
+    </tr>
+    <tr>
+      <td>Generic type description</td>
+      <td><code>&lt;typeparam name="<em>Type</em>" /&gt;</code></td>
+    </tr>
+    <tr>
+      <td>Return value</td>
+      <td><code>&lt;return /&gt;</code></td>
+    </tr>
+    <tr>
+      <td>Inherit docstring</td>
+      <td><code>&lt;inheritdoc cref="<em>class or property</em>" /&gt;</code></td>
+    </tr>
+    </tbody>
+  </table>
 
-    <h2>Swagger Documentation</h2>
-    <pre><code><i>/// &lt;summary&gt;</i>
+  <h2>Swagger Documentation</h2>
+  <pre><code><i>/// &lt;summary&gt;</i>
 <i>/// Description</i>
 <i>/// &lt;summary /&gt;</i>
 <i>///</i> <em>Swagger documentation elements</em>
 <em>[SwaggerDocAttributes]</em>
 <b>public async</b> Task&lt;ActionResult&gt; <em>FunctionName</em>>(<em>args</em>>) { ... }</code></pre>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>Response descriptions</td>
-          <td><code><i>/// &lt;response code="<em>status code</em>"&gt;<em>description</em>&lt;response/&gt;</i></code></td>
-        </tr>
-        <tr>
-          <td>Query parameter description</td>
-          <td><code><i>/// &lt;param name="<em>paramName</em>"&gt;<em>description</em>&lt;param/&gt;</i></code></td>
-        </tr>
-        <tr>
-          <td>Response schema</td>
-          <td><code>[ProducesResponseType(StatusCodes.Status<em>Code</em>, Type = typeof(<em>Schema</em>))]</code></td>
-        </tr>
-        <tr>
-          <td>Tags</td>
-          <td><code>[SwaggerOperation(Tags = <b>new</b>[] { OpenApiTags.<em>TagName</em> })]</code></td>
-        </tr>
-      </tbody>
-    </table>
-  </article>
+  <table>
+    <tbody>
+    <tr>
+      <td>Response descriptions</td>
+      <td><code><i>/// &lt;response code="<em>status code</em>"&gt;<em>description</em>&lt;response/&gt;</i></code></td>
+    </tr>
+    <tr>
+      <td>Query parameter description</td>
+      <td><code><i>/// &lt;param name="<em>paramName</em>"&gt;<em>description</em>&lt;param/&gt;</i></code></td>
+    </tr>
+    <tr>
+      <td>Response schema</td>
+      <td><code>[ProducesResponseType(StatusCodes.Status<em>Code</em>, Type = typeof(<em>Schema</em>))]</code></td>
+    </tr>
+    <tr>
+      <td>Tags</td>
+      <td><code>[SwaggerOperation(Tags = <b>new</b>[] { OpenApiTags.<em>TagName</em> })]</code></td>
+    </tr>
+    </tbody>
+  </table>
+</article>
 
-  <article>
-    <h2>Entity Framework Core</h2>
-    <pre><code><b>public class</b> <em>Model</em> {
+<article>
+  <h2>Entity Framework Core</h2>
+  <pre><code><b>public class</b> <em>Model</em> {
   <em>[Attributes]</em> 
-  <b>public</b> <em>Type</em> <em>PropertyName</em> { <b>get</b>; <b>set</b>; }</em>      
-}</code></pre>
+  <b>public</b> <em>Type</em> <em>PropertyName</em> { <b>get</b>; <b>set</b>; }</em>
+    }</code></pre>
 
-    <section>
+  <section>
     <h3>CLI Commands</h3>
     <table>
       <tr>
@@ -170,47 +174,47 @@
     <h3>Model Attributes</h3>
     <table>
       <tbody>
-        <tr>
-          <td>Field is required</td>
-          <td>
-            <code>[Required]</code>, prefer using nullable references<br/>
-            <code>
-              <b>public</b> <em>Type</em> ... <i>// Required</i><br/>
-              <b>public</b> <em>Type</em>? ... <i>// Optional</i>
-            </code>
-          </td>
-        </tr>
-        <tr>
-          <td>Primary key</td>
-          <td><code>[Key]</code></td>
-        </tr>
+      <tr>
+        <td>Field is required</td>
+        <td>
+          <code>[Required]</code>, prefer using nullable references<br/>
+          <code>
+            <b>public</b> <em>Type</em> ... <i>// Required</i><br/>
+            <b>public</b> <em>Type</em>? ... <i>// Optional</i>
+          </code>
+        </td>
+      </tr>
+      <tr>
+        <td>Primary key</td>
+        <td><code>[Key]</code></td>
+      </tr>
 
-        <tr>
-          <td>Lengths</td>
-          <td>
-            <code>
-              [MinLength(<em>number</em>)]<br/>
-              [MaxLength(<em>number</em>)]
-            </code>
-          </td>
-        </tr>
-        <tr>
-          <td>Exclude from model</td>
-          <td><code>[NotMapped]</code></td>
-        </tr>
-        <tr>
-          <td>Decimal precision</td>
-          <td>
-            <code>
-              [Precision(<em>whole numbers</em>, <em>decimals</em>)]<br/>
-              [Column(TypeName="decimal(p,s)"]
-            </code>
-          </td>
-        </tr>
-        <tr>
-          <td>Owned type</td>
-          <td><code>[Owned] <b>public class</b> <em>Model</em> { <em>...</em> }</code></td>
-        </tr>
+      <tr>
+        <td>Lengths</td>
+        <td>
+          <code>
+            [MinLength(<em>number</em>)]<br/>
+            [MaxLength(<em>number</em>)]
+          </code>
+        </td>
+      </tr>
+      <tr>
+        <td>Exclude from model</td>
+        <td><code>[NotMapped]</code></td>
+      </tr>
+      <tr>
+        <td>Decimal precision</td>
+        <td>
+          <code>
+            [Precision(<em>whole numbers</em>, <em>decimals</em>)]<br/>
+            [Column(TypeName="decimal(p,s)"]
+          </code>
+        </td>
+      </tr>
+      <tr>
+        <td>Owned type</td>
+        <td><code>[Owned] <b>public class</b> <em>Model</em> { <em>...</em> }</code></td>
+      </tr>
       </tbody>
     </table>
 
@@ -227,63 +231,63 @@
   <b>base</b>.OnModelCreating(modelBuilder);
   modelBuilder.ApplyConfiguration(<b>new</b> <em>Model</em>Configuration());
 }</code></pre>
-    
+
     <table>
       <tbody>
-        <tr>
-          <td>Define index</td>
-          <td>
-            <code>
-              modelBuilder.HasIndex(m => m.<em>Property</em>)<br/>
-              modelBuilder.HasIndex(m => <b>new</b> { <em>collection of properties</em>})
-              modelBuilder.HasIndex(<em>...</em>).IsUnique()
-            </code>
-          </td>
-        </tr>
-        <tr>
-          <td>Check constraints</td>
-          <td>
-            <code>
-              modelBuilder.HasCheckConstraint("CK_<em>UniqueName</em>", <em>SQL Constraint</em>)<br/>
-              <i>// Constraint should be a boolean e.g. "[Property1] > [Property2]"</i>
-            </code>
-          </td>
-        </tr>
-        <tr>
-          <td>Unique constraints</td>
-          <td>Not supported, use unique index</td>
-        </tr>
-        <tr>
-          <td>Default values</td>
-          <td>
-            <code>
-              modelBuilder.HasDefaultValue(<em>any supported value</em>)<br/>
-              modelBuilder.HasDefaultValue(<em>"SQL Function "</em>)
-            </code>
-          </td>
-        </tr>
-        <tr>
-          <td>Delete behavior</td>
-          <td>
-            <code>
-              modelBuilder.<em>Relation</em>.OnDelete(DeleteBehavior.<em>&lt;Type&gt;</em>)<br/>
-              <i>Types: Cascade, Restrict, SetNull, NoAction</i>
-            </code>
-          </td>
-        </tr>
-        <tr>
-          <td>Relation is required</td>
-          <td><code>modelBuilder.<em>Relation</em>.IsRequired()</code></td>
-        </tr>
-        <tr>
-          <td>Seed data</td>
-          <td>
-            <code>
-              modelBuilder.HasData(<em>instance 1</em>, <em>instance 2</em>, ...)<br/>
-              modelBuilder.OwnsOne(m => m.<em>OwnedField</em>).HasData(...)
-            </code>
-          </td>
-        </tr>
+      <tr>
+        <td>Define index</td>
+        <td>
+          <code>
+            modelBuilder.HasIndex(m => m.<em>Property</em>)<br/>
+            modelBuilder.HasIndex(m => <b>new</b> { <em>collection of properties</em>})
+            modelBuilder.HasIndex(<em>...</em>).IsUnique()
+          </code>
+        </td>
+      </tr>
+      <tr>
+        <td>Check constraints</td>
+        <td>
+          <code>
+            modelBuilder.HasCheckConstraint("CK_<em>UniqueName</em>", <em>SQL Constraint</em>)<br/>
+            <i>// Constraint should be a boolean e.g. "[Property1] > [Property2]"</i>
+          </code>
+        </td>
+      </tr>
+      <tr>
+        <td>Unique constraints</td>
+        <td>Not supported, use unique index</td>
+      </tr>
+      <tr>
+        <td>Default values</td>
+        <td>
+          <code>
+            modelBuilder.HasDefaultValue(<em>any supported value</em>)<br/>
+            modelBuilder.HasDefaultValue(<em>"SQL Function "</em>)
+          </code>
+        </td>
+      </tr>
+      <tr>
+        <td>Delete behavior</td>
+        <td>
+          <code>
+            modelBuilder.<em>Relation</em>.OnDelete(DeleteBehavior.<em>&lt;Type&gt;</em>)<br/>
+            <i>Types: Cascade, Restrict, SetNull, NoAction</i>
+          </code>
+        </td>
+      </tr>
+      <tr>
+        <td>Relation is required</td>
+        <td><code>modelBuilder.<em>Relation</em>.IsRequired()</code></td>
+      </tr>
+      <tr>
+        <td>Seed data</td>
+        <td>
+          <code>
+            modelBuilder.HasData(<em>instance 1</em>, <em>instance 2</em>, ...)<br/>
+            modelBuilder.OwnsOne(m => m.<em>OwnedField</em>).HasData(...)
+          </code>
+        </td>
+      </tr>
       </tbody>
     </table>
 
@@ -291,43 +295,43 @@
 
     <table>
       <tbody>
-        <tr>
-          <td>One-to-Many</td>
-          <td>
-            <code>
-              <b>public</b> ICollection&lt;<em>Related</em>&gt; { <b>get</b>; <b>set</b>; }<br/><br/>
-              modelBuilder.HasMany(m => m.<em>Related</em>).WithOne(r => r.<em>Model</em>)
-            </code>
-          </td>
-        </tr>
-        <tr>
-          <td>Foreign Key</td>
-          <td>
+      <tr>
+        <td>One-to-Many</td>
+        <td>
+          <code>
+            <b>public</b> ICollection&lt;<em>Related</em>&gt; { <b>get</b>; <b>set</b>; }<br/><br/>
+            modelBuilder.HasMany(m => m.<em>Related</em>).WithOne(r => r.<em>Model</em>)
+          </code>
+        </td>
+      </tr>
+      <tr>
+        <td>Foreign Key</td>
+        <td>
             <pre><code><b>public</b> Guid <em>Related</em>Id { <b>get</b>; <b>set</b>; }
 [ForeignKey("<em>Related</em>Id")] <b>public</b> <em>Related</em> <em>Related</em> { <b>get</b>; <b>set</b>; }
 
 modelBuilder.HasOne(m => m.<em>Related</em>).WithMany(r => r.<em>Models</em>)
   .HasForeignKey(m => m.<em>Related</em>Id)</code></pre>
-          </td>
-        </tr>
-        <tr>
-          <td>One-to-One</td>
-          <td>
-            <code>
-              <i>// Model 1</i><br/>
-              <b>public</b> Guid <em>Related</em>Id { <b>get</b>; <b>set</b>; }<br/>
-              <b>public</b> <em>Related</em> <em>Related</em> { <b>get</b>; <b>set</b>; }<br/>
+        </td>
+      </tr>
+      <tr>
+        <td>One-to-One</td>
+        <td>
+          <code>
+            <i>// Model 1</i><br/>
+            <b>public</b> Guid <em>Related</em>Id { <b>get</b>; <b>set</b>; }<br/>
+            <b>public</b> <em>Related</em> <em>Related</em> { <b>get</b>; <b>set</b>; }<br/>
 
-              <i>// Model 2</i><br/>
-              <b>public</b> <em>Model</em> <em>Model</em> { <b>get</b>; <b>set</b>; }<br/>
-              <br/>
-              modelBuilder.HasOne(m => m.<em>Related</em>).WithOne(r => r.<em>Model</em>)
-            </code>
-          </td>
-        </tr>
-        <tr>
-          <td>Many-to-Many</td>
-          <td>
+            <i>// Model 2</i><br/>
+            <b>public</b> <em>Model</em> <em>Model</em> { <b>get</b>; <b>set</b>; }<br/>
+            <br/>
+            modelBuilder.HasOne(m => m.<em>Related</em>).WithOne(r => r.<em>Model</em>)
+          </code>
+        </td>
+      </tr>
+      <tr>
+        <td>Many-to-Many</td>
+        <td>
             <pre><code><i>// Left Model</i>
 <b>public</b> ICollection&lt;<em>Left</em>&gt; <em>Left</em> { <b>get</b>; <b>set</b>; }
 <b>public</b> <em>Model</em> <em>Model</em> { <b>get</b>; <b>set</b>; }
@@ -351,8 +355,8 @@ modelBuilder.HasMany(l => l.<em>Right</em>).WithMany(r => r.<em>Left</em>)
       <i>// Composite primary key</i>
       jm.HasKey(m => <b>new</b> { m.<em>Left</em>Id, m.<em>Right</em>Id })
     })</code></pre>
-          </td>
-        </tr>
+        </td>
+      </tr>
       </tbody>
     </table>
 
@@ -361,97 +365,99 @@ modelBuilder.HasMany(l => l.<em>Right</em>).WithMany(r => r.<em>Left</em>)
 
     <table>
       <tbody>
-        <tr>
-          <td>Get all objects</td>
-          <td><code>db.<em>Model</em></code></td>
-        </tr>
-        <tr>
-          <td>Filter queryset</td>
-          <td><code>db.<em>Model</em>.Where(m => <em>conditions</em>)</code></td>
-        </tr>
-        <tr>
-          <td>Get one instance</td>
-          <td>
-            <code>
-              db.<em>Model</em>.Find(<em>Primary key</em>)<br/>
-              db.<em>Model</em>.Single(m => <em>conditions</em>)<br />
-              db.<em>Model</em>.SingleOrDefault(m => <em>conditions</em>)<br />
+      <tr>
+        <td>Get all objects</td>
+        <td><code>db.<em>Model</em></code></td>
+      </tr>
+      <tr>
+        <td>Filter queryset</td>
+        <td><code>db.<em>Model</em>.Where(m => <em>conditions</em>)</code></td>
+      </tr>
+      <tr>
+        <td>Get one instance</td>
+        <td>
+          <code>
+            db.<em>Model</em>.Find(<em>Primary key</em>)<br/>
+            db.<em>Model</em>.Single(m => <em>conditions</em>)<br/>
+            db.<em>Model</em>.SingleOrDefault(m => <em>conditions</em>)<br/>
 
-              <em>queryable</em>.First()<br />
-              <em>queryable</em>.FirstOrDefault()<br />
-              <em>queryable</em>.Last()<br />
-              <em>queryable</em>.LastOrDefault()<br />
-            </code>
-          </td>
-        </tr>
-        <tr>
-          <td>Queryset size limits</td>
-          <td>
-            <code>
-              db.<em>Model</em>.Skip(<em>number</em>)<br/>
-              db.<em>Model</em>.Take(<em>number</em>)
-            </code>
-          </td>
-        </tr>
-        <tr>
-          <td>Aggregations (LINQ)</td>
-          <td>
-            <code>
-              <em>queryable</em>.Average(m => m.<em>Property</em>)<br/>
-              <em>queryable</em>.Count()<br/>
-              <em>queryable</em>.LongCount()<br/>
-              <em>queryable</em>.Max(m => m.<em>Property</em>)<br/>
-              <em>queryable</em>.Min(m => m.<em>Property</em>)<br/>
-              <em>queryable</em>.Sum(m => m.<em>Property</em>)
-            </code>
-          </td>
-        </tr>
-        <tr>
-          <td>Sort the queryset</td>
-          <td>
-            <code>
-              db.<em>Model</em>.OrderBy(m => m.<em>Property</em>)<br/>
-              db.<em>Model</em>.OrderByDescending(m => m.<em>Property</em>)<br/>
-              db.<em>Model</em>.OrderBy(m => m.<em>Property</em>).ThenBy(m => m.<em>Property</em>)<br/>
-              db.<em>Model</em>.OrderBy(m => m.<em>Property</em>).ThenByDescending(m => m.<em>Property</em>)<br/>
-            </code>
-          </td>
-        </tr>
-        <tr>
-          <td>Include relations</td>
-          <td>
-            <code>
-              db.<em>Model</em>.Include(m => m.<em>ForeignDataProperty</em>)<br/>
-              db.<em>Model</em>.Include(m => m.<em>Related</em>).ThenInclude(r => r.<em>Related</em>)
-            </code>
-          </td>
-        </tr>
-        <tr>
-          <td>Load foreing key data</td>
-          <td>
-            <code>
-              db.Entry(<em>instance</em>).Collection(m => m.<em>Collection</em>).Load()<br/>
-              db.Entry(<em>instance</em>).Reference(m => m.<em>Property</em>).Load()
-            </code>
-          </td>
-        </tr>
-        <tr>
-          <td>Removing relationships</td>
-          <td><code><em>instance</em>.<em>Collection</em>.Clear()</code></td>
-        </tr>
-        <tr>
-          <td>Query relations</td>
-          <td><code>db.Entry(<em>instance</em>).Collection(m => m.<em>Collection</em>).Query().Where(<em>...</em>)</code></td>
-        </tr>
-        <tr>
-          <td>Projections</td>
-          <td><code>db.<em>Model</em>.Select(m => new <em>ViewModel</em> { <em>property mappings</em> })</code></td>
-        </tr>
-        <tr>
-          <td>Table joins</td>
-          <td>
-            <pre><code>db.<em>Model</em>.Join(db.<em>Model2</em>, m => m.<em>FK</em>, f => f.<em>PK</em>, (m, f) => <em>projection</em>)</code></td>
-        </tr>
+            <em>queryable</em>.First()<br/>
+            <em>queryable</em>.FirstOrDefault()<br/>
+            <em>queryable</em>.Last()<br/>
+            <em>queryable</em>.LastOrDefault()<br/>
+          </code>
+        </td>
+      </tr>
+      <tr>
+        <td>Queryset size limits</td>
+        <td>
+          <code>
+            db.<em>Model</em>.Skip(<em>number</em>)<br/>
+            db.<em>Model</em>.Take(<em>number</em>)
+          </code>
+        </td>
+      </tr>
+      <tr>
+        <td>Aggregations (LINQ)</td>
+        <td>
+          <code>
+            <em>queryable</em>.Average(m => m.<em>Property</em>)<br/>
+            <em>queryable</em>.Count()<br/>
+            <em>queryable</em>.LongCount()<br/>
+            <em>queryable</em>.Max(m => m.<em>Property</em>)<br/>
+            <em>queryable</em>.Min(m => m.<em>Property</em>)<br/>
+            <em>queryable</em>.Sum(m => m.<em>Property</em>)
+          </code>
+        </td>
+      </tr>
+      <tr>
+        <td>Sort the queryset</td>
+        <td>
+          <code>
+            db.<em>Model</em>.OrderBy(m => m.<em>Property</em>)<br/>
+            db.<em>Model</em>.OrderByDescending(m => m.<em>Property</em>)<br/>
+            db.<em>Model</em>.OrderBy(m => m.<em>Property</em>).ThenBy(m => m.<em>Property</em>)<br/>
+            db.<em>Model</em>.OrderBy(m => m.<em>Property</em>).ThenByDescending(m => m.<em>Property</em>)<br/>
+          </code>
+        </td>
+      </tr>
+      <tr>
+        <td>Include relations</td>
+        <td>
+          <code>
+            db.<em>Model</em>.Include(m => m.<em>ForeignDataProperty</em>)<br/>
+            db.<em>Model</em>.Include(m => m.<em>Related</em>).ThenInclude(r => r.<em>Related</em>)
+          </code>
+        </td>
+      </tr>
+      <tr>
+        <td>Load foreing key data</td>
+        <td>
+          <code>
+            db.Entry(<em>instance</em>).Collection(m => m.<em>Collection</em>).Load()<br/>
+            db.Entry(<em>instance</em>).Reference(m => m.<em>Property</em>).Load()
+          </code>
+        </td>
+      </tr>
+      <tr>
+        <td>Removing relationships</td>
+        <td><code><em>instance</em>.<em>Collection</em>.Clear()</code></td>
+      </tr>
+      <tr>
+        <td>Query relations</td>
+        <td><code>db.Entry(<em>instance</em>).Collection(m => m.<em>Collection</em>).Query().Where(<em>...</em>)</code>
+        </td>
+      </tr>
+      <tr>
+        <td>Projections</td>
+        <td><code>db.<em>Model</em>.Select(m => new <em>ViewModel</em> { <em>property mappings</em> })</code></td>
+      </tr>
+      <tr>
+        <td>Table joins</td>
+        <td>
+          <pre><code>db.<em>Model</em>.Join(db.<em>Model2</em>, m => m.<em>FK</em>, f => f.<em>PK</em>, (m, f) => <em>projection</em>)</code>
+        </td>
+      </tr>
       </tbody>
     </table>
 
@@ -460,48 +466,48 @@ modelBuilder.HasMany(l => l.<em>Right</em>).WithMany(r => r.<em>Left</em>)
 
     <table>
       <tbody>
-        <tr>
-          <td>Create instance</td>
-          <td>
-            <code>db.<em>Model</em>.Add(instance)</code>
-          </td>
-        </tr>
-        <tr>
-          <td>Add related instances</td>
-          <td>
-            <code>
-              <em>instance</em>.<em>Property</em> = <em>relatedInstance</em><br/>
-              <em>instance</em>.<em>Collection</em>.Add(<em>relatedInstance</em>)</em>
-            </code>
-          </td>
-        </tr>
-        <tr>
-          <td>Update instance</td>
-          <td>
-            <code><em>instance</em>.<em>Property</em> = <em>value</em></code>
-          </td>
-        </tr>
-        <tr>
-          <td>Add or update (auto-generated keys)</td>
-          <td>
-            <code>db.Update(<em>instance</em>)</code>
-          </td>
-        </tr>
-        <tr>
-          <td>Remove related instance</td>
-          <td>
-            <code>
-              <em>instance</em>.<em>Property</em> = <b>null</b><br/>
-              <em>instance</em>.<em>Collection</em>.Remove(<em>relatedInstance</em>)
-            </code>
-          </td>
-        </tr>
-        <tr>
-          <td>Delete instance</td>
-          <td>
-            <code>db.<em>Model</em>.Remove(<em>instance</em>)</code>
-          </td>
-        </tr>
+      <tr>
+        <td>Create instance</td>
+        <td>
+          <code>db.<em>Model</em>.Add(instance)</code>
+        </td>
+      </tr>
+      <tr>
+        <td>Add related instances</td>
+        <td>
+          <code>
+            <em>instance</em>.<em>Property</em> = <em>relatedInstance</em><br/>
+            <em>instance</em>.<em>Collection</em>.Add(<em>relatedInstance</em>)</em>
+          </code>
+        </td>
+      </tr>
+      <tr>
+        <td>Update instance</td>
+        <td>
+          <code><em>instance</em>.<em>Property</em> = <em>value</em></code>
+        </td>
+      </tr>
+      <tr>
+        <td>Add or update (auto-generated keys)</td>
+        <td>
+          <code>db.Update(<em>instance</em>)</code>
+        </td>
+      </tr>
+      <tr>
+        <td>Remove related instance</td>
+        <td>
+          <code>
+            <em>instance</em>.<em>Property</em> = <b>null</b><br/>
+            <em>instance</em>.<em>Collection</em>.Remove(<em>relatedInstance</em>)
+          </code>
+        </td>
+      </tr>
+      <tr>
+        <td>Delete instance</td>
+        <td>
+          <code>db.<em>Model</em>.Remove(<em>instance</em>)</code>
+        </td>
+      </tr>
       </tbody>
     </table>
 
@@ -518,10 +524,10 @@ modelBuilder.HasMany(l => l.<em>Right</em>).WithMany(r => r.<em>Left</em>)
   transaction.RollbackToSavePoint(savePoint);
 }</code></pre>
 
-  </article>
-  <article>
-    <h2>xUnit (Unit and Integration Tests)</h2>
-    <pre><code>[Collection(<em>name</em>)]
+</article>
+<article>
+  <h2>xUnit (Unit and Integration Tests)</h2>
+  <pre><code>[Collection(<em>name</em>)]
 <b>public class</b> <em>TestClass</em> : <em>BaseTestCase</em>
 {
   [Fact]
@@ -533,120 +539,119 @@ modelBuilder.HasMany(l => l.<em>Right</em>).WithMany(r => r.<em>Left</em>)
   <b>public async</b> Task <em>ParameterizedTest</em>(<em>arguments</em>) {}
 }</code></pre>
 
-    <h3>Mocking with Moq</h3>
-    <p>Create a mock instance <code><b>var</b> mock = <b>new</b> Mock&lt;<em>Interface</em>&gt;()</code></p>
+  <h3>Mocking with Moq</h3>
+  <p>Create a mock instance <code><b>var</b> mock = <b>new</b> Mock&lt;<em>Interface</em>&gt;()</code></p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>Mock a property</td>
-          <td>
-            <code>
-              mock.Setup(m => m.<em>Property</em>).Returns(<em>value</em>)
-            </code>
-          </td>
-        </tr>
-        <tr>
-          <td>Mock a function</td>
-          <td>
-            <code>
-              mock.Setup(m => m.<em>Function</em>(<em>Arguments</em>)).Returns(<em>value</em>)<br/>
-              mock.Setup(m => m.<em>FunctionAsync</em>(<em>Arguments</em>).Result).Returns(<em>value</em>)
-            </code>
-          </td>
-        </tr>
-        <tr>
-          <td>Match arguments</td>
-          <td>
-            <code>
-              It.IsAny&lt;<em>Type</em>&gt;()<br/>
-              It.Is&lt;<em>Type</em>&gt;(arg => <em>conditions</em>)<br/>
-            </code>
-          </td>
-        </tr>
-        <tr>
-          <td>Throws an exception</td>
-          <td>
-            <code>
-              <em>mockSetup</em>.Throws&lt;<em>Exception</em>&gt;<br/>
-              <em>mockSetup</em>.Throws(<b>new</b> <em>Exception</em>)
-            </code>
-          </td>
-        </tr>
-        <tr>
-          <td>Assert function calls</td>
-          <td>
-            <code>
-              mock.Verify(m => m.<em>FunctionCall()</em>, Times.Once())<br/>
-              mock.Verify(m => m.<em>FunctionCall()</em>, Times.Exactly(<em>count</em>))
-            </code>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <table>
+    <tbody>
+    <tr>
+      <td>Mock a property</td>
+      <td>
+        <code>
+          mock.Setup(m => m.<em>Property</em>).Returns(<em>value</em>)
+        </code>
+      </td>
+    </tr>
+    <tr>
+      <td>Mock a function</td>
+      <td>
+        <code>
+          mock.Setup(m => m.<em>Function</em>(<em>Arguments</em>)).Returns(<em>value</em>)<br/>
+          mock.Setup(m => m.<em>FunctionAsync</em>(<em>Arguments</em>).Result).Returns(<em>value</em>)
+        </code>
+      </td>
+    </tr>
+    <tr>
+      <td>Match arguments</td>
+      <td>
+        <code>
+          It.IsAny&lt;<em>Type</em>&gt;()<br/>
+          It.Is&lt;<em>Type</em>&gt;(arg => <em>conditions</em>)<br/>
+        </code>
+      </td>
+    </tr>
+    <tr>
+      <td>Throws an exception</td>
+      <td>
+        <code>
+          <em>mockSetup</em>.Throws&lt;<em>Exception</em>&gt;<br/>
+          <em>mockSetup</em>.Throws(<b>new</b> <em>Exception</em>)
+        </code>
+      </td>
+    </tr>
+    <tr>
+      <td>Assert function calls</td>
+      <td>
+        <code>
+          mock.Verify(m => m.<em>FunctionCall()</em>, Times.Once())<br/>
+          mock.Verify(m => m.<em>FunctionCall()</em>, Times.Exactly(<em>count</em>))
+        </code>
+      </td>
+    </tr>
+    </tbody>
+  </table>
 
-    <h3>Assertions</h3>
-    <table>
-      <tbody>
-        <tr>
-          <td>Equals</td>
-          <td>
-            <code>
-              Assert.Equal(<em>expected</em>, <em>actual</em>)<br/>
-              Assert.NotEqual(<em>expected</em>, <em>actual</em>)
-            </code>
-          </td>
-        </tr>
-        <tr>
-          <td>A collection contains an object</td>
-          <td>
-            <code>
-              Assert.Contains(<em>collection</em>, <em>object</em>)<br/>
-              Assert.DoesNotContain(<em>collection</em>, <em>object</em>)
-            </code>
-          </td>
-        </tr>
-        <tr>
-          <td>Value is in range of</td>
-          <td>
-            <code>
-              Assert.InRange(<em>value</em>, <em>min</em>, <em>max</em>)<br/>
-              Assert.NotInRange(<em>value</em>, <em>min</em>, <em>max</em>)
-            </code>
-          </td>
-        </tr>
-        <tr>
-          <td>Throws an exception</td>
-          <td>
+  <h3>Assertions</h3>
+  <table>
+    <tbody>
+    <tr>
+      <td>Equals</td>
+      <td>
+        <code>
+          Assert.Equal(<em>expected</em>, <em>actual</em>)<br/>
+          Assert.NotEqual(<em>expected</em>, <em>actual</em>)
+        </code>
+      </td>
+    </tr>
+    <tr>
+      <td>A collection contains an object</td>
+      <td>
+        <code>
+          Assert.Contains(<em>collection</em>, <em>object</em>)<br/>
+          Assert.DoesNotContain(<em>collection</em>, <em>object</em>)
+        </code>
+      </td>
+    </tr>
+    <tr>
+      <td>Value is in range of</td>
+      <td>
+        <code>
+          Assert.InRange(<em>value</em>, <em>min</em>, <em>max</em>)<br/>
+          Assert.NotInRange(<em>value</em>, <em>min</em>, <em>max</em>)
+        </code>
+      </td>
+    </tr>
+    <tr>
+      <td>Throws an exception</td>
+      <td>
             <pre><code><b>var</b> exception = Assert.Throws&lt;Exception&gt;(() => <em>actions</em>)
 <b>var</b> exception = <b>await</b> Assert.ThrowsAsync&lt;Exception&gt;(<b>async</b> () => {
   <b>await</b> <em>action</em>
 })
 </code></pre>
-          </td>
-        </tr>
-        <tr>
-          <td>Assert values</td>
-          <td>
-            <code>
-              Assert.Empty(<em>collection</em>)<br/>
-              Assert.NotEmpty(<em>collection</em>)<br/>
-              Assert.IsType&lt;Type&gt;(<em>object</em>)<br/>
-              Assert.IsNotType&lt;Type&gt;(<em>object</em>)<br/>
-              Assert.Null(<em>object</em>)<br/>
-              Assert.NotNull(<em>object</em>)<br/>
-              Assert.False(<em>collection</em>)<br/>
-              Assert.True(<em>collection</em>)<br/>
-            </code>
-          </td>
-        </tr>
+      </td>
+    </tr>
+    <tr>
+      <td>Assert values</td>
+      <td>
+        <code>
+          Assert.Empty(<em>collection</em>)<br/>
+          Assert.NotEmpty(<em>collection</em>)<br/>
+          Assert.IsType&lt;Type&gt;(<em>object</em>)<br/>
+          Assert.IsNotType&lt;Type&gt;(<em>object</em>)<br/>
+          Assert.Null(<em>object</em>)<br/>
+          Assert.NotNull(<em>object</em>)<br/>
+          Assert.False(<em>collection</em>)<br/>
+          Assert.True(<em>collection</em>)<br/>
+        </code>
+      </td>
+    </tr>
 
-      </tbody>
-    </table>
-  </article>
+    </tbody>
+  </table>
+</article>
 
-  <x-footer></x-footer>
-  <script src="./js/components.js"></script>
+<x-footer></x-footer>
+<script src="./js/components.js" type="module"></script>
 </body>
 </html>
-
