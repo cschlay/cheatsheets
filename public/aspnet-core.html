@@ -8,6 +8,14 @@
 <x-menu></x-menu>
 <h1>ASP.NET Core</h1>
 <article>
+  <pre><code>[ApiController][Route(<em>BaseUrl</em>)]
+<b>public class</b> <em>EndpointName</em> : ControllerBase {
+  [HttpGet("id:guid")]
+  <b>public async</b> Task&lt;ActionResult&lt;<em>Response</em>&gt;&gt; <em>MethodName</em>(<b>Guid</b> id, [FromQuery] <b>bool</b> slim) {
+    <i>Do the actions...</i>
+  }
+}</code></pre>
+
   <table>
     <tbody>
     <tr>
@@ -49,6 +57,12 @@
           [JsonIgnore]
         </code></td>
     </tr>
+      <tr>
+        <td><a href="https://docs.microsoft.com/en-us/aspnet/core/mvc/models/model-binding?view=aspnetcore-6.0">Bind parameters</a></td>
+        <td>
+          <code>[FromQuery], [FromRoute], [FromForm], [FromBody], [FromHeader]</code>
+        </td>
+      </tr>
     </tbody>
   </table>
 
@@ -141,6 +155,9 @@
     </tbody>
   </table>
 </article>
+
+  <h2>File Uploads</h2>
+  TODO: Write about File Uploads
 
 <article>
   <h2>Entity Framework Core</h2>
@@ -332,28 +349,37 @@ modelBuilder.HasOne(m => m.<em>Related</em>).WithMany(r => r.<em>Models</em>)
       <tr>
         <td>Many-to-Many</td>
         <td>
-            <pre><code><i>// Left Model</i>
-<b>public</b> ICollection&lt;<em>Left</em>&gt; <em>Left</em> { <b>get</b>; <b>set</b>; }
-<b>public</b> <em>Model</em> <em>Model</em> { <b>get</b>; <b>set</b>; }
-
-<i>// Right Model</i>
+            <pre><code><i>// Left.cs</i>
 <b>public</b> ICollection&lt;<em>Right</em>&gt; <em>Right</em> { <b>get</b>; <b>set</b>; }
-<b>public</b> <em>Model</em> <em>Model</em> { <b>get</b>; <b>set</b>; }
+<b>public</b> ICollection&lt;<em>JoinModel</em>&gt; <em>JoinModel</em> { <b>get</b>; <b>set</b>; }
 
-<i>// Join Model</i>
+<i>// Right.cs</i>
+<b>public</b> ICollection&lt;<em>Left</em>&gt; <em>Left</em> { <b>get</b>; <b>set</b>; }
+<b>public</b> ICollection&lt;<em>JoinModel</em>&gt; <em>JoinModel</em> { <b>get</b>; <b>set</b>; }
+
+<i>// JoinModel.cs</i>
 <b>public</b> Guid <em>Left</em>Id  { <b>get</b>; <b>set</b>; }
 <b>public</b> <em>Left</em> <em>Left</em> { <b>get</b>; <b>set</b>; }
 
 <b>public</b> Guid <em>Right</em>Id  { <b>get</b>; <b>set</b>; }
 <b>public</b> <em>Right</em> <em>Right</em> { <b>get</b>; <b>set</b>; }
 
-modelBuilder.HasMany(l => l.<em>Right</em>).WithMany(r => r.<em>Left</em>)
-  .UsingEntity&lt;<em>Model</em>&gt;(
-    jm => jm.HasOne(m => m.<em>Left</em>).WithMany(l => l.<em>Model</em>),
-    jm => jm.HasOne(m => m.<em>Right</em>).WithMany(r => r.<em>Model</em>),
-    jm => {
+<i>// AppDbContext.cs </i>
+modelBuilder
+  .Entity&lt;<em>Left</em>&gt;(l => l.<em>Right</em>)
+  .WithMany(r => r.<em>Left</em>)
+  .UsingEntity&lt;<em>JoinModel</em>&gt;(
+    j => j
+      .HasOne(m => m.<em>Right</em>)
+      .WithMany(l => l.<em>JoinModel</em>)
+      .HasForeignKey(m.<em>Right</em>Id),
+    j => j
+      .HasOne(m => m.<em>Left</em>)
+      .WithMany(r => r.<em>JoinModel</em>)
+      .HasForeignKey(m.<em>Left</em>Id),
+    j => {
       <i>// Composite primary key</i>
-      jm.HasKey(m => <b>new</b> { m.<em>Left</em>Id, m.<em>Right</em>Id })
+      j.HasKey(m => <b>new</b> { m.<em>Left</em>Id, m.<em>Right</em>Id })
     })</code></pre>
         </td>
       </tr>
